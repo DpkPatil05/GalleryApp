@@ -8,6 +8,6 @@ class Palette {
   static const Color secondary = Color(0xffff1744);
   static const Color tertiary = Color(0xffaf52bf);
 
-  static const Color fontColor = Color(0xff0d0d0d);
+  static const Color fontColor = Color(0xff5c5f63);
   static const Color bg = Color(0xfff0fcff);
 }
