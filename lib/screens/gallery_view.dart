@@ -30,13 +30,13 @@ class _GalleryViewState extends State<GalleryView> {
         drawer: Drawer(
           child: Column(
             children: [
-              MaterialButton(
-                child: Text('Settings'),
-                  onPressed: () {}
-                  ),
-              MaterialButton(
-                  child: Text('Gallery Page'),
-                  onPressed: () {}
+              ListTile(
+                title: Text('Settings'),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('Gallery'),
+                onTap: () {},
               ),
             ],
           ),
