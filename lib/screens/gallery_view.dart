@@ -15,6 +15,8 @@ class GalleryView extends StatefulWidget {
 }
 
 class _GalleryViewState extends State<GalleryView> {
+  double verticalScale = 0;
+  int horizontalScale = 0;
   @override
   Widget build(BuildContext context) {
     return Consumer<DrawerProvider>(builder: (context, prov, _) {
@@ -93,23 +95,30 @@ class _GalleryViewState extends State<GalleryView> {
             : SizedBox(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
-                child: GestureDetector(
-                  onScaleUpdate: (ScaleUpdateDetails sd) {
-                    prov.setScale(sd.scale);
+                child: InteractiveViewer(
+                  panEnabled: false,
+                  minScale: 1,
+                  maxScale: 10,
+                  alignPanAxis: true,
+                  onInteractionUpdate: (val) {
+                    setState(() {
+                      horizontalScale = val.horizontalScale.round();
+                      verticalScale = val.verticalScale;
+                    });
+                    print(verticalScale);
                   },
                   child: GridView.builder(
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: prov.scale == 0
-                          ? 5
-                          : prov.scale,
+                      crossAxisCount: horizontalScale <= 0 ? 5 : horizontalScale,
+                      childAspectRatio: 1.7777778,
                       crossAxisSpacing: 5.0,
                       mainAxisSpacing: 5.0,
                     ),
                     itemCount: 20,
                     itemBuilder: (context, index) {
                       return Container(
-                        color: Palette.secondary,
+                        color: index % 2 == 0 ? Palette.secondary : Colors.red,
                         child: Text("index: $index"),
                       );
                     },

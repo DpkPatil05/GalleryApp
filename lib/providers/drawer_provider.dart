@@ -3,16 +3,9 @@ import 'package:flutter/cupertino.dart';
 class DrawerProvider with ChangeNotifier {
   String filePath = '';
   List<String> filesL = [];
-  int scale = 5;
 
   void setFilePath(String file) {
     filePath = file;
-    notifyListeners();
-  }
-
-  void setScale(double value) {
-    scale = value.floor();
-    print(scale);
     notifyListeners();
   }
 
