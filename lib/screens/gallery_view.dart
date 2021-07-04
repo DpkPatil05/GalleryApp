@@ -104,7 +104,7 @@ class _GalleryViewState extends State<GalleryView> {
                   itemCount: 20,
                   itemBuilder: (context, index) {
                     return Container(
-                      color: Colors.blue,
+                      color: Palette.secondary,
                       child: Text("index: $index"),
                     );
                   },
