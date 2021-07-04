@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -92,20 +90,25 @@ class _GalleryViewState extends State<GalleryView> {
                   ],
                 ),
               )
-            : GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  crossAxisSpacing: 5.0,
-                  mainAxisSpacing: 5.0,
+            : InteractiveViewer(
+                panEnabled: false,
+                minScale: 1,
+                maxScale: 5,
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    crossAxisSpacing: 5.0,
+                    mainAxisSpacing: 5.0,
+                  ),
+                  itemCount: 20,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      color: Colors.blue,
+                      child: Text("index: $index"),
+                    );
+                  },
                 ),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Container(
-                    color: Colors.blue,
-                    child: Text("index: $index"),
-                  );
-                },
               ),
       );
     });
