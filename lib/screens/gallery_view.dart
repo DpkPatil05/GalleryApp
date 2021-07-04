@@ -90,24 +90,30 @@ class _GalleryViewState extends State<GalleryView> {
                   ],
                 ),
               )
-            : InteractiveViewer(
-                panEnabled: false,
-                minScale: 1,
-                maxScale: 5,
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
-                    crossAxisSpacing: 5.0,
-                    mainAxisSpacing: 5.0,
-                  ),
-                  itemCount: 20,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      color: Palette.secondary,
-                      child: Text("index: $index"),
-                    );
+            : SizedBox(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: GestureDetector(
+                  onScaleUpdate: (ScaleUpdateDetails sd) {
+                    prov.setScale(sd.scale);
                   },
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: prov.scale == 0
+                          ? 5
+                          : prov.scale,
+                      crossAxisSpacing: 5.0,
+                      mainAxisSpacing: 5.0,
+                    ),
+                    itemCount: 20,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        color: Palette.secondary,
+                        child: Text("index: $index"),
+                      );
+                    },
+                  ),
                 ),
               ),
       );
